@@ -2,14 +2,41 @@
     <%= flash[:notice] %>
 <% end %>
 
-<% @tweets.each do |e| %>
-    <p>
-        <%= e.message %>
-        <%= ((Time.current - e.tdate)/60).to_i %>分
-        <%=link_to '削除', "/tweets/#{e.id}", data: { turbo_method: :delete } %>
-        <%=link_to '表示', "/tweets/#{e.id}" %>
-        <%=link_to '編集', "/tweets/#{e.id}/edit" %>
-    </p>
-<% end %>
 
-<%= link_to '新規追加', 'tweets/new' %>
+<div id=pageSub>
+    <ul> 
+      <li> ホーム</li>
+      <li> 話題を検索</li>
+      <li> 通知</li>
+      <li> メッセージ</li>
+      <li> ブックマーク</li>
+      <li> リスト</li>
+      <li> プロフィール</li>
+      <li> もっと見る</li>
+  </ul>
+  <p><%= link_to 'ツイートする', 'tweets/new' %></p>
+</div>
+
+<div id=pageBody>
+    <nav>
+      <ul>
+          <li><a href=".">ツイート</a></li>
+          <li><a href=".">ツイートと返信</a></li>
+          <li><a href=".">メディア</a></li>
+          <li><a href=".">いいね</a></li>
+      </ul>
+  </nav>
+
+    <% @tweets.each do |e| %>
+        <p>
+            <%= e.message %>
+            <%= ((Time.current - e.tdate)/60).to_i %>分
+            <%=link_to '削除', "/tweets/#{e.id}", data: { turbo_method: :delete } %>
+            <%=link_to '表示', "/tweets/#{e.id}" %>
+            <%=link_to '編集', "/tweets/#{e.id}/edit" %>
+        </p>
+    <% end %>
+</div>
+
+
+
